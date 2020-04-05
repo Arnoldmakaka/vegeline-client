@@ -8,7 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'OpenSans',
+        primaryIconTheme: IconThemeData(color:Colors.black),
+      ),
       home: Wrapper(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

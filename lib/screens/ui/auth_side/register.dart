@@ -18,10 +18,10 @@ class _RegisterState extends State<Register> {
   // register method
   register(username, contact, password,context){
 
-//    Navigator.push(
-//      context,
-//      MaterialPageRoute(builder: (context)=>Home()),
-//     );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context)=>Home()),
+    );
   }
 
   @override

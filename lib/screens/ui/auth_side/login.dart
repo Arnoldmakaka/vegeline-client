@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vege_line/screens/ui/auth_side/register.dart';
+import 'package:vege_line/screens/ui/home_side/home.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -14,10 +15,10 @@ class _LoginState extends State<Login> {
 
   // login method
   login(password, username,context){
-//    Navigator.push(
-//      context,
-//      MaterialPageRoute(builder: (context)=>Home()),
-//     );
+   Navigator.push(
+     context,
+     MaterialPageRoute(builder: (context)=>Home()),
+    );
   }
 
   // reset password

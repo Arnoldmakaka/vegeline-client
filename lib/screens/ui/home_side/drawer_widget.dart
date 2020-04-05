@@ -5,7 +5,7 @@ class LeftDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width*0.65,
+      width: MediaQuery.of(context).size.width*0.8,
       child: Drawer(
         child: ListView(
           children: <Widget>[
