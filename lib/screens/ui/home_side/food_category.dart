@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:vege_line/app_state.dart';
 import 'package:vege_line/models/food_category.dart';
@@ -7,7 +8,6 @@ import 'package:vege_line/screens/ui/home_side/category_widget.dart';
 import 'package:vege_line/screens/ui/home_side/drawer_widget.dart';
 import 'package:vege_line/screens/ui/home_side/selected_food_widget.dart';
 import 'package:vege_line/screens/ui/home_side/vendor_intro_widget.dart';
-import 'package:vege_line/screens/ui/slivers/custom_header_sliver.dart';
 
 class FoodCategory extends StatefulWidget {
 
@@ -54,27 +54,49 @@ class _FoodCategoryState extends State<FoodCategory> {
           child: SafeArea(
             child: CustomScrollView(
             slivers: <Widget>[
-              SliverPersistentHeader(
-                pinned: false,
-                floating: true,
-                delegate: CustomHeaderSliver(
-                  minExtent: screenHeight*0.09,
-                  maxExtent: screenHeight*0.3,
+              SliverAppBar(
+                pinned: true,
+                floating: false,
+                automaticallyImplyLeading: true,
+                expandedHeight: screenHeight*0.3,
+                actions: <Widget>[
+                  IconButton(icon: Icon(Icons.search), onPressed: (){})
+                ],
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        bottom: 12.0,
+                        left: 12.0,
+                        child: Container(
+                          width: 180,
+                          child: Text(
+                            "Let's get shopping",
+                            style: GoogleFonts.lora(
+                              textStyle: TextStyle(
+                                fontSize:30.0,
+                                fontWeight: FontWeight.bold,
+                              )
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-
               SliverList(
                 delegate: SliverChildListDelegate(<Widget>[
                   Container(
                     padding: EdgeInsets.fromLTRB(5.0, 10.0, 0.0, 12.0),
-                    child: Consumer<AppState>(
-                      builder: (context, appState, _) => SingleChildScrollView(
+                    child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: <Widget>[
-                            for(final category in foodCategories) CategoryWidget(category: category)
+                            for(final category in foodCategories)
+                              Consumer<AppState>(
+                                builder: (context,appState,_) => CategoryWidget(category: category)),
                           ],
-                        ),
                       ),
                     ),
                   ),
@@ -130,9 +152,8 @@ class _FoodCategoryState extends State<FoodCategory> {
                     ),
                   ),
                   Consumer<AppState>(
-                    builder:(context, appState ,_) => VendorIntroWidget(),
-                    // here I failed to link the current categoryId in the appstate to a vendor, it's like it is showing all vendors
-                  ),
+                    builder:(context, appState , _) => VendorIntroWidget(),
+                  ), 
                 ]),
               ),
             ],

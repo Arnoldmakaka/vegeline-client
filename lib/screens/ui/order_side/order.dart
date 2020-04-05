@@ -278,9 +278,6 @@ class _OrderWidgetState extends State<OrderWidget> {
                       setState(() {
                         _paymentOption = option;
                       });
-                      if(_selectedOption == 'MTN Mobile Money'){
-                        useMobileMoney();
-                      }
                     },
                     hint: Text('Select here'),
                   ),
@@ -317,10 +314,15 @@ class _OrderWidgetState extends State<OrderWidget> {
               height: 50.0,
               child: RaisedButton(
                 onPressed: (){
-                  showDialog(
-                    context: context,
-                    builder: (context)=>OrderCompleteDialog(),
-                  );
+                  if(_selectedOption == 'MTN Mobile Money'){
+                    useMobileMoney();
+                    
+                    showDialog(
+                      context: context,
+                      builder: (context)=>OrderCompleteDialog(),
+                    );
+                  }
+                  
                 },
                 child: Text(
                   'Place Your Order',

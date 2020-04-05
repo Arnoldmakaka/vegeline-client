@@ -52,17 +52,14 @@ class _HomeState extends State<Home> {
                   fontSize: 40.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'OpenSans',
-                  // color: Colors.black.withOpacity(textOpacity(shrinkOffset)),
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            Consumer<AppState>(
-              builder: (context, appState, _) => Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: FoodListWidget(),
-              ),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: FoodListWidget(),
             ),
             SizedBox(height:10.0,)
           ],

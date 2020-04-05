@@ -19,13 +19,10 @@ class FoodListWidget extends StatelessWidget {
       children: List.generate(6, (index){
 
         final appState = Provider.of<AppState>(context);
-        // int catID = appState.selectedCategoryId;
 
         return GestureDetector(
           onTap: (){
             appState.updateCategoryId(foodCategories[index].categoryId);
-            // print(appState.selectedCategoryId);
-            // catID = appState.selectedCategoryId;
 
             Navigator.push(
               context, 
@@ -33,8 +30,6 @@ class FoodListWidget extends StatelessWidget {
                 builder: (context)=>FoodCategory(fcategory: foodCategories[index]),
               )
             );
-            // print('$catID in appstate');
-            
           },
           child: InkWell(
             child: Container(
@@ -62,9 +57,6 @@ class FoodListWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // Container(
-                  //   color: Color.fromRGBO(255, 255, 255, 0.19),
-                  // ),
                   Text('${foodCategories[index].categoryName}',
                   style: TextStyle(
                     fontSize: 20.0,

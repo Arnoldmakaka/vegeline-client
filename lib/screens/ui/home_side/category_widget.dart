@@ -14,16 +14,12 @@ class CategoryWidget extends StatefulWidget {
 
 class _CategoryWidgetState extends State<CategoryWidget> {
 
-  int initSelectedId;
-
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
     final isSelected = appState.selectedCategoryId == widget.category.categoryId;
 
-    setState(() {
-      initSelectedId = appState.selectedCategoryId;
-    });
+    print(isSelected);
 
     return InkWell(
       onTap: (){

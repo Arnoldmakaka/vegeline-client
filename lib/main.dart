@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'OpenSans',
         primaryIconTheme: IconThemeData(color:Colors.black),
+        primarySwatch: Colors.grey,
       ),
       home: Wrapper(),
       debugShowCheckedModeBanner: false,
