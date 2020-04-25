@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vege_line/models/food_item.dart';
-import 'package:vege_line/screens/ui/order_side/order_complete_dialog.dart';
+import 'package:vege_line/screens/ui/order_side/order_confirm.dart';
 
 class OrderWidget extends StatefulWidget {
   OrderWidget({Key key, this.food}):super(key:key);
@@ -13,28 +13,13 @@ class OrderWidget extends StatefulWidget {
 class _OrderWidgetState extends State<OrderWidget> {
   _OrderWidgetState(this.food);
   FoodItem food;
-  int numberOfItems;
-  int priceOfItem;
-  List deliveryOptions = [
-    'Pick Up',
-    'Deliver'
-  ];
-  List paymentOptions = [
-    'MTN Mobile Money',
-    'Pay on Delivery'
-  ];
-  var _selectedOption;
-  var _paymentOption;
+  double numberOfItems;
+  double priceOfItem;
 
   setPriceOfItems(value){
     setState(() {
       priceOfItem = food.pricePerStandardMeasurementUnit * value;
     });
-  }
-
-  // mobile money activator
-  useMobileMoney(){
-
   }
 
   @override
@@ -44,34 +29,67 @@ class _OrderWidgetState extends State<OrderWidget> {
     priceOfItem = food.pricePerStandardMeasurementUnit;
   }
 
+  _confirmWithVendor(foodName, numberOfItems, foodPrice){
+    
+    // return booleanValue; to determine whether vendor has confirmed or not
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'My Order',
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: 'OpenSans',
-            fontWeight: FontWeight.w600
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal:12.0, vertical: 5.0),
+            color: Colors.grey[300],
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'My Order',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20.0
+                  ),
+                ),
+                Spacer(),
+                IconButton(icon: Icon(Icons.clear), onPressed: ()=>{
+                  Navigator.pop(context)
+                })
+              ],
+            ),
           ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.grey[300],
-        elevation: 0.0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal:12.0),
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: <Widget>[
-            SizedBox(height:12.0,),
-            Row(
+          SizedBox(height:12.0,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Item Details',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width:3.0),
+                Expanded(
+                  child: Divider(thickness: 1,),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height:10.0,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Row(
               children: <Widget>[
                 Text(
                   'Food Item',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontFamily: 'OpenSans',
                     fontWeight: FontWeight.w500,
                   ),
@@ -80,15 +98,21 @@ class _OrderWidgetState extends State<OrderWidget> {
                 Text(food.foodName),
               ],
             ),
-            Divider(thickness: 0.4,),
-            Builder(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Divider(thickness: 0.4,),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Builder(
               builder: (context) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     'Quantity',
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       fontFamily: 'OpenSans',
                       fontWeight: FontWeight.w500,
                     ),
@@ -101,18 +125,6 @@ class _OrderWidgetState extends State<OrderWidget> {
                         numberOfItems += 1;
                       });
                       setPriceOfItems(numberOfItems);
-
-                      if(numberOfItems > food.numOfItems){
-                        Scaffold.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Only ${food.numOfItems} items available'),
-                          )
-                        );
-                        setState(() {
-                          numberOfItems = 1;
-                          priceOfItem = food.pricePerStandardMeasurementUnit;
-                        });
-                      }
                     },
                   ),
                   IconButton(
@@ -128,17 +140,23 @@ class _OrderWidgetState extends State<OrderWidget> {
                       
                     }
                   ),
-                  Text(numberOfItems<=food.numOfItems ? '$numberOfItems' : '${numberOfItems-1}'),
+                  Text(numberOfItems<=food.numOfItems ? '$numberOfItems ${food.standardMeasurement}' : '${numberOfItems-1} ${food.standardMeasurement}'),
                 ],
               ),
             ),
-            Divider(),
-            Row(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Divider(),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Row(
               children: <Widget>[
                 Text(
                   'Item Price',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontFamily: 'OpenSans',
                     fontWeight: FontWeight.w500,
                   ),
@@ -147,8 +165,11 @@ class _OrderWidgetState extends State<OrderWidget> {
                 Text('${food.pricePerStandardMeasurementUnit}/='),
               ],
             ),
-            SizedBox(height:16.0,),
-            Row(
+          ),
+          SizedBox(height:16.0,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
@@ -163,13 +184,16 @@ class _OrderWidgetState extends State<OrderWidget> {
                 ),
               ],
             ),
-            SizedBox(height:10.0,),
-            Row(
+          ),
+          SizedBox(height:10.0,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Row(
               children: <Widget>[
                 Text(
                   'Name',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontFamily: 'OpenSans',
                     fontWeight: FontWeight.w500,
                   ),
@@ -178,13 +202,19 @@ class _OrderWidgetState extends State<OrderWidget> {
                 Text(food.supplier.supplierName),
               ],
             ),
-            Divider(),
-            Row(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Divider(),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Row(
               children: <Widget>[
                 Text(
                   'Contact',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontFamily: 'OpenSans',
                     fontWeight: FontWeight.w500,
                   ),
@@ -193,99 +223,11 @@ class _OrderWidgetState extends State<OrderWidget> {
                 Text(food.supplier.contact),
               ],
             ),
-            SizedBox(height:16.0,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Others',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(width:3.0),
-                Expanded(
-                  child: Divider(thickness: 1,),
-                ),
-              ],
-            ),
-            SizedBox(height:10.0,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    'Delivery Option',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'OpenSans',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                // SizedBox(width:10,),
-                Builder(
-                  builder: (context) => DropdownButton(
-                    value: _selectedOption,
-                    items: deliveryOptions.map((option){
-                      return DropdownMenuItem(
-                        value: option,
-                        child: Text(option),
-                      );
-                    }).toList(), 
-                    onChanged: (option){
-                      setState(() {
-                        _selectedOption = option;
-                      });
-                      if(_selectedOption == 'Deliver'){
-                        Scaffold.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Delivery charges should be discussed with supplier"),
-                          )
-                        );
-                      }
-                    },
-                    hint: Text('Select here'),
-                  ),
-                ),
-              ],
-            ),
-            Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    'Payment Method',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'OpenSans',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                // SizedBox(width:10,),
-                Builder(
-                  builder: (context) => DropdownButton(
-                    value: _paymentOption,
-                    items: paymentOptions.map((option){
-                      return DropdownMenuItem(
-                        value: option,
-                        child: Text(option),
-                      );
-                    }).toList(), 
-                    onChanged: (option){
-                      setState(() {
-                        _paymentOption = option;
-                      });
-                    },
-                    hint: Text('Select here'),
-                  ),
-                ),
-              ],
-            ),
-            Divider(),
-            Row(
+          ),
+          SizedBox(height: 30.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
@@ -308,24 +250,33 @@ class _OrderWidgetState extends State<OrderWidget> {
                 ),
               ],
             ),
-            SizedBox(height: 30.0,),
-            ButtonTheme(
+          ),
+          SizedBox(height:30.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            child: ButtonTheme(
               minWidth: MediaQuery.of(context).size.width*0.9,
               height: 50.0,
               child: RaisedButton(
                 onPressed: (){
-                  if(_selectedOption == 'MTN Mobile Money'){
-                    useMobileMoney();
+                  bool _confirmed = _confirmWithVendor(food.foodName, numberOfItems, food.pricePerStandardMeasurementUnit);
+                  // if(_selectedOption == 'MTN Mobile Money'){
+                  //   useMobileMoney();
                     
-                    showDialog(
-                      context: context,
-                      builder: (context)=>OrderCompleteDialog(),
-                    );
+                  //   showDialog(
+                  //     context: context,
+                  //     builder: (context)=>OrderCompleteDialog(),
+                  //   );
+                  // }
+                  if(_confirmed){
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context)=>ConfirmedOrder(priceOfItem: priceOfItem)
+                    ));
                   }
                   
                 },
                 child: Text(
-                  'Place Your Order',
+                  'Confirm with Vendor',
                   style: TextStyle(
                     color: Colors.grey[600],
                     fontSize: 18.0,
@@ -342,9 +293,9 @@ class _OrderWidgetState extends State<OrderWidget> {
                 ),
               ),
             ),
-            SizedBox(height: 30.0,),
-          ],
-        ),
+          ),
+          SizedBox(height: 30.0,),
+        ],
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:vege_line/models/food_item.dart';
-import 'package:vege_line/screens/ui/home_side/selected_food_review.dart';
+import 'package:vege_line/screens/ui/food_side/selected_food_review.dart';
 import 'package:vege_line/screens/ui/order_side/order.dart';
 import 'package:vege_line/screens/ui/slivers/custom_image_header.dart';
 

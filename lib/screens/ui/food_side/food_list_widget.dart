@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vege_line/app_state.dart';
 import 'package:vege_line/models/food_stuff.dart';
-import 'package:vege_line/screens/ui/home_side/food_category.dart';
+import 'package:vege_line/screens/ui/food_side/food_category.dart';
 
 class FoodListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return GridView.count(
       crossAxisCount: 2, 
       crossAxisSpacing: 7.0,
       scrollDirection: Axis.vertical,
       primary: false,
+      mainAxisSpacing: 8.0,
+      childAspectRatio: 1.2,
       children: List.generate(6, (index){
 
         final appState = Provider.of<AppState>(context);
@@ -39,7 +40,7 @@ class FoodListWidget extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     height: screenHeight*0.2,
-                    width: screenWidth*0.5,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,

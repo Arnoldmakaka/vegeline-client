@@ -56,6 +56,8 @@ flutter:
     - assets/images/IMG-20200325-WA0019.jpg
     - assets/images/IMG-20200325-WA0040.jpg
     - assets/images/IMG-20200325-WA0039.jpg
+    - assets/images/IMG-20200325-WA0066.jpg
+    - assets/images/IMG-20200325-WA0067.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

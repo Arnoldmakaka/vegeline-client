@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vege_line/screens/ui/home_side/food_category.dart';
+import 'package:vege_line/screens/ui/food_side/food_category.dart';
 
 class OrderCompleteDialog extends StatelessWidget {
   @override
@@ -13,6 +13,7 @@ class OrderCompleteDialog extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Container(
+              height: MediaQuery.of(context).size.height*0.5,
               padding: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
@@ -40,9 +41,9 @@ class OrderCompleteDialog extends StatelessWidget {
                 ),
                 SizedBox(height: 20.0,),
                 Text('Your order was successfully made!', style: TextStyle(fontSize: 20.0,fontFamily: 'OpenSans',fontWeight: FontWeight.w600),textAlign: TextAlign.center,),
-                SizedBox(height: 50.0,),
+                SizedBox(height: 30.0,),
                 ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width*0.9,
+                  minWidth: MediaQuery.of(context).size.width*0.6,
                   height: 40.0,
                   child: RaisedButton(
                     onPressed: (){
@@ -68,7 +69,7 @@ class OrderCompleteDialog extends StatelessWidget {
                 ),
                 SizedBox(height: 15.0,),
                 ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width*0.9,
+                  minWidth: MediaQuery.of(context).size.width*0.6,
                   height: 40.0,
                   child: RaisedButton(
                     elevation: 0.0,

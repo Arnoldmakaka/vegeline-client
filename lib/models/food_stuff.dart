@@ -2,7 +2,6 @@ import 'package:vege_line/models/food_category.dart';
 import 'package:vege_line/models/food_item.dart';
 import 'package:vege_line/models/food_review.dart';
 import 'package:vege_line/models/food_supplier.dart';
-import 'package:vege_line/screens/ui/home_side/food_category.dart';
 
 final category1 = Category(
   categoryId: 1,
@@ -88,7 +87,8 @@ final meats1 = FoodItem(
   ],
   category: Category(categoryId:3,categoryName:'Meats'),
   imagePath: "assets/images/IMG-20200325-WA0040.jpg",
-  numOfItems: 10
+  numOfItems: 10,
+  standardMeasurement: 'Kgs'
 );
 
 final meats2 = FoodItem(
@@ -130,7 +130,8 @@ final meats2 = FoodItem(
   ],
   category: Category(categoryId:3,categoryName:'Meats'),
   imagePath: "assets/images/IMG-20200325-WA0039.jpg",
-  numOfItems: 20
+  numOfItems: 20,
+  standardMeasurement: 'Kgs'
 );
 
 final meats3 = FoodItem(
@@ -172,7 +173,8 @@ final meats3 = FoodItem(
   ],
   category: Category(categoryId:3,categoryName:'Meats'),
   imagePath: "assets/images/IMG-20200325-WA0043.jpg",
-  numOfItems: 5
+  numOfItems: 5,
+  standardMeasurement: 'Kgs'
 );
 
 final grains1 = FoodItem(
@@ -214,7 +216,8 @@ final grains1 = FoodItem(
   ],
   category: Category(categoryId:1,categoryName:'Meats'),
   imagePath: "assets/images/IMG-20200325-WA0043.jpg",
-  numOfItems: 10
+  numOfItems: 10,
+  standardMeasurement: 'Kgs'
 );
 
 final dairy1 = FoodItem(
@@ -256,7 +259,94 @@ final dairy1 = FoodItem(
   ],
   category: Category(categoryId:2,categoryName:'Dairy'),
   imagePath: "assets/images/IMG-20200325-WA0019.jpg",
-  numOfItems: 10
+  numOfItems: 10,
+  standardMeasurement: 'Litres'
+);
+
+final dairy2 = FoodItem(
+  foodId:6,
+  foodName:'Cheese',
+  pricePerStandardMeasurementUnit:1200,
+  supplier:FoodSupplier.supplierDetails(supplierId: 2, supplierName:'Igamba Tom',contact: "0789402190"),
+  reviews:[
+    Reviews(
+      reviewId:10,
+      dateCreated:'21/12/2019',
+      reviewText:'Too good to be true',
+      foodItem: FoodItem.itemDetails(foodId: 1, foodName:'Beef'),
+      userId: 3,
+      userName: 'Muhumuza Carol',
+      rating: 5.0,
+      userImagePath: "assets/images/GEDC0900.jpg"
+    ),
+    Reviews(
+      reviewId:11,
+      dateCreated:'24/03/2020',
+      reviewText:'I think the vendor should minimise the delivery time',
+      foodItem: FoodItem.itemDetails(foodId: 1, foodName:'Beef'),
+      userId: 3,
+      userName: 'Agatha Nels',
+      rating: 0.5,
+      userImagePath: "assets/images/GEDC0900.jpg"
+    ),
+    Reviews(
+      reviewId:12,
+      dateCreated:'4/03/2020',
+      reviewText:'Everyone this guy is the best!!!',
+      foodItem: FoodItem.itemDetails(foodId: 1, foodName:'Beef'),
+      userId: 3,
+      userName: 'Mystic',
+      rating: 4.5,
+      userImagePath: "assets/images/GEDC0900.jpg"
+    ),
+  ],
+  category: Category(categoryId:2,categoryName:'Dairy'),
+  imagePath: "assets/images/IMG-20200325-WA0066.jpg",
+  numOfItems: 10,
+  standardMeasurement: 'Litres'
+);
+
+final poultry1 = FoodItem(
+  foodId:7,
+  foodName:'Eggs',
+  pricePerStandardMeasurementUnit:9500,
+  supplier:FoodSupplier.supplierDetails(supplierId: 2, supplierName:'Igamba Tom',contact: "0789402190"),
+  reviews:[
+    Reviews(
+      reviewId:10,
+      dateCreated:'21/12/2019',
+      reviewText:'Too good to be true',
+      foodItem: FoodItem.itemDetails(foodId: 1, foodName:'Beef'),
+      userId: 3,
+      userName: 'Muhumuza Carol',
+      rating: 5.0,
+      userImagePath: "assets/images/GEDC0900.jpg"
+    ),
+    Reviews(
+      reviewId:11,
+      dateCreated:'24/03/2020',
+      reviewText:'I think the vendor should minimise the delivery time',
+      foodItem: FoodItem.itemDetails(foodId: 1, foodName:'Beef'),
+      userId: 3,
+      userName: 'Agatha Nels',
+      rating: 0.5,
+      userImagePath: "assets/images/GEDC0900.jpg"
+    ),
+    Reviews(
+      reviewId:12,
+      dateCreated:'4/03/2020',
+      reviewText:'Everyone this guy is the best!!!',
+      foodItem: FoodItem.itemDetails(foodId: 1, foodName:'Beef'),
+      userId: 3,
+      userName: 'Mystic',
+      rating: 4.5,
+      userImagePath: "assets/images/GEDC0900.jpg"
+    ),
+  ],
+  category: Category(categoryId:5,categoryName:'Poultry'),
+  imagePath: "assets/images/IMG-20200325-WA0067.jpg",
+  numOfItems: 10,
+  standardMeasurement: 'Tray'
 );
 
 final vendor1 = FoodSupplier(
@@ -313,7 +403,9 @@ final vendor2 = FoodSupplier(
   foodItems: [
     dairy1,
     grains1,
-    meats2
+    meats2,
+    poultry1,
+    dairy2,
   ],
 );
 
@@ -325,12 +417,15 @@ final meats = [
   meats3
 ];
 
-final dairys = [dairy1];
+final dairys = [dairy1,dairy2];
 
 final grains = [grains1];
+
+final poultrys = [poultry1];
 
 final foodItems = [
   meats,
   grains,
-  dairys
+  dairys,
+  poultrys
 ];

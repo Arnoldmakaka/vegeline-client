@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:vege_line/app_state.dart';
 import 'package:vege_line/screens/ui/home_side/drawer_widget.dart';
-import 'package:vege_line/screens/ui/home_side/food_list_widget.dart';
+import 'package:vege_line/screens/ui/food_side/food_list_widget.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -40,30 +38,27 @@ class _HomeState extends State<Home> {
         ],
       ),
       drawer: LeftDrawerWidget(),
-      body: ChangeNotifierProvider<AppState>(
-        create: (context)=>AppState(),
-        child: ListView(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal:10.0),
-              child: Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'OpenSans',
-                ),
-                textAlign: TextAlign.center,
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:10.0),
+            child: Text(
+              'Categories',
+              style: TextStyle(
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'OpenSans',
               ),
+              textAlign: TextAlign.center,
             ),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: FoodListWidget(),
-            ),
-            SizedBox(height:10.0,)
-          ],
-        ),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: FoodListWidget(),
+          ),
+          SizedBox(height:10.0,)
+        ],
       ),
     );
   }
