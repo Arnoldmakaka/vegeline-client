@@ -32,7 +32,7 @@ class AllSelectedFood extends StatelessWidget {
           return GridView.count(
             crossAxisCount: 2,
             crossAxisSpacing: 7.0,
-            childAspectRatio: 1.1,
+            childAspectRatio: 0.9,
             children: List.generate(foodstuff.length, (index){
               return SelectedFoodItemWidget(food: foodstuff[index]);
             }),

@@ -70,23 +70,16 @@ class SelectedFoodItemWidget extends StatelessWidget {
               ],
             ),
             Container(
-              height: 30,
               child: Padding(
                 padding: const EdgeInsets.only(left:8.0,top: 3.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      food.foodName.length > 9 ? '${food.foodName.substring(0,7)}...' : food.foodName,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontFamily: 'OpenSans',
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  food.foodName.length > 9 ? '${food.foodName.substring(0,7)}...' : food.foodName,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             )
