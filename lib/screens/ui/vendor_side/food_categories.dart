@@ -26,13 +26,12 @@ class FoodCategory extends StatelessWidget {
         }
       },
       child: Container(
-        padding: EdgeInsets.all(10.0),
-        margin: EdgeInsets.symmetric(horizontal: 10.0),
+        padding: EdgeInsets.all(8.0),
+        margin: EdgeInsets.symmetric(horizontal: 5.0),
         decoration: BoxDecoration(
           color: isSelected?Colors.grey[400]:Colors.white,
           borderRadius: isSelected?BorderRadius.all(Radius.circular(20.0)):BorderRadius.circular(10.0),
         ),
-        height: 45.0,
         child: Text(
           foodCategory.categoryName,
           textAlign: TextAlign.center,

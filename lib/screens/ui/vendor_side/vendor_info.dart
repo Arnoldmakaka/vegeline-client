@@ -81,7 +81,7 @@ class VendorInfoWidget extends StatelessWidget {
                                 SizedBox(height:8.0,),
                                 Divider(),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     Row(
                                       children: <Widget>[
@@ -97,13 +97,13 @@ class VendorInfoWidget extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(width:8.0,),
+                                    SizedBox(width:5.0,),
                                     Row(
                                       children: <Widget>[
                                         Icon(Icons.location_on,color: Colors.blueGrey[300]),
                                         SizedBox(width:1.0,),
                                         Text(
-                                          vendor.location,
+                                          vendor.location.length > 10 ? '${vendor.location.substring(0, 9)}..' : vendor.location,
                                           style: TextStyle(
                                             fontSize: 16.0,
                                             fontWeight: FontWeight.w400,

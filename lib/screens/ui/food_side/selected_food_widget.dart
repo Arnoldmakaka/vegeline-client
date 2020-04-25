@@ -20,7 +20,7 @@ class SelectedFoodItemWidget extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.fromLTRB(5.0,2.0,5.0,0.0),
-        width: MediaQuery.of(context).size.width*0.4,
+        width: MediaQuery.of(context).size.width*0.5,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
