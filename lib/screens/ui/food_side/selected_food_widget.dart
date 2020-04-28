@@ -7,6 +7,7 @@ class SelectedFoodItemWidget extends StatelessWidget {
   final FoodItem food;
   SelectedFoodItemWidget({Key key, this.food}):super(key:key);
 
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -30,7 +31,7 @@ class SelectedFoodItemWidget extends StatelessWidget {
                 Hero(
                   tag: food.foodId,
                   child: Container(
-                    height: 120,
+                    height: MediaQuery.of(context).size.height*0.2,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -77,7 +78,7 @@ class SelectedFoodItemWidget extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontFamily: 'OpenSans',
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

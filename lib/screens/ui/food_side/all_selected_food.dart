@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:vege_line/app_state.dart';
 import 'package:vege_line/models/food_item.dart';
-import 'package:vege_line/models/food_stuff.dart';
 import 'package:vege_line/screens/ui/food_side/selected_food_widget.dart';
 
 class AllSelectedFood extends StatelessWidget {
   
-  List<FoodItem> foodstuff = [];
+  AllSelectedFood({this.foodstuff});
+  final List<FoodItem> foodstuff;
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +19,10 @@ class AllSelectedFood extends StatelessWidget {
       ),
       body: Builder(
         builder: (context) {
-          final appState = Provider.of<AppState>(context);
-          for(final item in foodItems){
-            for(final object in item){
-              if(object.category.categoryId.toString().contains(appState.selectedCategoryId.toString())){
-                foodstuff.add(object);
-              }
-            }
-          }
           return GridView.count(
             crossAxisCount: 2,
             crossAxisSpacing: 7.0,
-            childAspectRatio: 0.9,
+            childAspectRatio: 1.0,
             children: List.generate(foodstuff.length, (index){
               return SelectedFoodItemWidget(food: foodstuff[index]);
             }),

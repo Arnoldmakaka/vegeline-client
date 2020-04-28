@@ -155,21 +155,20 @@ class _ConfirmedOrderState extends State<ConfirmedOrder> {
             Divider(),
             SizedBox(height: 20.0,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
                   'Total Food Item Cost',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 17.0,
                     fontFamily: 'OpenSans',
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(width: 20.0,),
+                Spacer(),
                 Text(
                   '${widget.priceOfItem}/=',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontFamily: 'OpenSans',
                     fontWeight: FontWeight.w700,
                     color: Colors.green[700],

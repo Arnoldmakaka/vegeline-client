@@ -82,8 +82,8 @@ class _LoginState extends State<Login> {
                   Text(
                     'Sign in to get started',
                     style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
                   SizedBox(height: 20.0,),
@@ -117,6 +117,21 @@ class _LoginState extends State<Login> {
                       contentPadding: EdgeInsets.all(12.0),
                     ),
                   ),
+                  SizedBox(height: 10.0,),
+                  GestureDetector(
+                    onTap: () => passwordReset(),
+                    child: Align(
+                      alignment: const Alignment(1, 0),
+                      child: Text(
+                        'Forgot your password?',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 40.0,),
                   ButtonTheme(
                     minWidth: screenWidth*0.9,
@@ -146,31 +161,17 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 5.0,),
-                  FlatButton(
-                    onPressed: (){
-                      passwordReset();
-                    },
-                    child: Text(
-                      'Forgot your password? Click here',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                      ),
+                  SizedBox(height: 12.0,),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder:(context)=>Register()),
                     ),
-                  ),
-                  FlatButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder:(context)=>Register()),
-                      );
-                    },
                     child: Text(
                       "Have no account? Let's get that done here",
                       style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.green[900],
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600
                       ),
                       textAlign: TextAlign.center,
                     ),

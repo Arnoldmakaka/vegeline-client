@@ -3,11 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:vege_line/app_state.dart';
 import 'package:vege_line/models/food_category.dart';
+import 'package:vege_line/models/food_item.dart';
 import 'package:vege_line/models/food_stuff.dart';
 import 'package:vege_line/screens/ui/food_side/all_selected_food.dart';
 import 'package:vege_line/screens/ui/home_side/category_widget.dart';
 import 'package:vege_line/screens/ui/home_side/drawer_widget.dart';
 import 'package:vege_line/screens/ui/food_side/selected_food_widget.dart';
+import 'package:vege_line/screens/ui/home_side/settings.dart';
 import 'package:vege_line/screens/ui/vendor_side/vendor_intro_widget.dart';
 
 class FoodCategory extends StatefulWidget {
@@ -22,32 +24,40 @@ class FoodCategory extends StatefulWidget {
 class _FoodCategoryState extends State<FoodCategory> {
   _FoodCategoryState(this.fcategory);
   final Category fcategory;
+  List<FoodItem>foodstuff = [];
+  
   
   // assign data to these
   // List<Category> foodCategories = [];
-  // List<FoodItem> foodItems = [];
 
   @override
   void initState() {
     super.initState();
-
-    // getFoodItems();
+    getFoodItems();
     // getCategories();
   }
 
   getFoodItems(){
     // assign them to foodItems also look at how the dummy data is organised in models/food_stuff.dart
+    for(final item in foodItems){
+      for(final object in item){
+        foodstuff.add(object);
+      }
+    }
   }
 
   getCategories(){
     // assign them to foodCategories also again look at how the dummy data is organised in models/food_stuff.dart
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
-
-    double screenWidth = MediaQuery.of(context).size.width;
-    
+    List<String> items = [
+      'Settings',
+      // 'My Transactions'
+    ];
     return Scaffold(
       drawer: LeftDrawerWidget(),
       backgroundColor: Colors.grey[100],
@@ -59,9 +69,23 @@ class _FoodCategoryState extends State<FoodCategory> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  IconButton(
+                  PopupMenuButton(
                     icon: Icon(Icons.more_vert),
-                    onPressed: (){},
+                    itemBuilder: (context){
+                      return items.map((item){
+                        return PopupMenuItem(
+                          value: item,
+                          child: Text(item),
+                        );
+                      }).toList();
+                    },
+                    onSelected: (item){
+                      if(item == 'Settings'){
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context)=>Settings(),
+                        ));
+                      }
+                    },
                   )
                 ],
               ),
@@ -103,15 +127,22 @@ class _FoodCategoryState extends State<FoodCategory> {
                       style: TextStyle(
                         fontFamily: 'OpenSans',
                         fontSize: 18.0,
-                        fontWeight: FontWeight.w600
+                        fontWeight: FontWeight.w800
                       ),
                     ),
                     Spacer(),
                     Consumer<AppState>(
                       builder:(context, appState, _) => GestureDetector(
                         onTap: (){
+                          List<FoodItem> specifItem = [];
+                          for(final item in foodstuff){
+                            if(item.category.categoryId.toString().contains(appState.selectedCategoryId.toString())){
+                              specifItem.add(item);
+                            }
+                            
+                          }
                           Navigator.push(
-                            context, MaterialPageRoute(builder: (context)=>AllSelectedFood()),
+                            context, MaterialPageRoute(builder: (context)=>AllSelectedFood(foodstuff: specifItem)),
                           );
                         },
                         child: Text(
@@ -149,7 +180,7 @@ class _FoodCategoryState extends State<FoodCategory> {
                   style: TextStyle(
                     fontFamily: 'OpenSans',
                     fontSize: 18.0,
-                    fontWeight: FontWeight.w600
+                    fontWeight: FontWeight.w800
                   ),
                 ),
               ),

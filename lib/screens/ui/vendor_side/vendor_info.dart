@@ -130,22 +130,21 @@ class VendorInfoWidget extends StatelessWidget {
                   SizedBox(height:10.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                    child: Text('ABOUT THE VENDOR'),
+                    child: Text('ABOUT THE VENDOR', style: TextStyle(fontWeight: FontWeight.w600),),
                   ),
                   SizedBox(height:15.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14.0),
                     child: Text(vendor.description,style: TextStyle(
-                      fontSize: 18.0,
-                      fontFamily: 'OpenSans',
-                      fontWeight: FontWeight.w600
+                      fontSize: 16.0,
+                      fontFamily: 'OpenSans'
                     ),),
                   ),
                   SizedBox(height:20.0),
                   Container(
                     color: Colors.white,
                     child: Padding(
-                      padding: const EdgeInsets.only(left:35.0),
+                      padding: const EdgeInsets.only(left:20.0),
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(

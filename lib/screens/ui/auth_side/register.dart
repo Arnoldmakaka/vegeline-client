@@ -80,13 +80,12 @@ class _RegisterState extends State<Register> {
             child: Form(
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 20.0,),
+                  SizedBox(height: 10.0,),
                   Text(
                     'Sign up to get started',
                     style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[800],
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w900,
                     ),
 //                    textAlign: TextAlign.justify,
                   ),
@@ -168,28 +167,22 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 8.0,),
-                  FlatButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder:(context)=>Login()),
-                      );
-                    },
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Already have an account? Click ',
-                        style: TextStyle(color: Colors.black,fontSize: 20,),
-                        children: [
-                          TextSpan(
-                            text: 'here.',
-                            style: TextStyle(color: Colors.deepOrange,
-                              fontSize: 20,),
-                          )
-                        ]
+                  SizedBox(height: 12.0,),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder:(context)=>Login()),
+                    ),
+                    child: Text(
+                      'Already have an account? Click here',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
                       ),
                     ),
                   ),
+                  
                 ],
               ),
             ),

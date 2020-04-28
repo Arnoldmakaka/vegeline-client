@@ -16,7 +16,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     // returns either the auth widget or home widget
     return Container(
-      child: Home(),
+      child: AuthScreen(),
     );
   }
 }
